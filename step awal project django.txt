@@ -1,0 +1,57 @@
+Buat Virtual Env:
+python -m venv venv
+
+Aktifkan Virtual Env:
+venv\Scripts\activate
+venv\bin\activate (Linux)
+
+Install Django:
+pip install django
+
+Bikin Project:
+django-admin startproject config .
+
+Buka di VS Code:
+code .
+
+Run server secara local:
+python manage.py runserver
+
+Tentukan DB yang akan dipakai, silahkan untuk migrasi DB tersebut:
+python manage.py migrate
+
+Bikin Super User:
+python manage.py createsuperuser
+
+Bikin aplikasi (app) baru:
+python manage.py startapp pkl
+
+Aplikasi baru harus didaftarkan ke config\settings.py di bagian INSTALLED_APPS:
+'pkl',
+
+Bikin model untuk aplikasi PKL:
+Definisikan di file pkl\models.py
+
+Setelah bikin app, harus di-makemigrations:
+python manage.py makemigrations
+
+Dan migrate:
+python manage.py migrate
+
+Tambahkan pkl\admin.py:
+from django.contrib import admin
+from .models import Pkl
+# Register your models here.
+admin.site.register(Pkl)
+
+
+Jalankan server & akses admin:
+python manage.py runserver
+
+Buka browser, http://localhost:8000/admin
+
+
+
+
+
+

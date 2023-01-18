@@ -1,28 +1,32 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class JenisSekolah(models.TextChoices):
-        SMK = 'SMK', _('Sekolah Menengan Kejuruan')
-        SMA = 'SMA', _('Sekolah Menengan Atas')
-        UNIVERSITAS = 'UNIV', _('Universitas')
+class StatusSekolah(models.TextChoices):
+        NEGERI = 'NGR', _('Negeri')
+        SWASTA = 'SWST', _('Swasta')
 
 
 class sekolah(models.Model):
-    nama = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254, blank=True, null=True)
-    web = models.CharField(max_length=100, blank=True, null=True)
-    no_tlp = models.CharField(max_length=20, blank=True, null=True)
-    alamat = models.TextField()
-    jenis_sekolah = models.CharField(
+    npsn = models.CharField(max_length=20, default='')
+    nama = models.CharField(max_length=50, default='')
+    email = models.EmailField(max_length=254, blank=True, null=True, default='')
+    alamat = models.TextField(default='')
+    provinsi = models.CharField(max_length=50, default='')
+    kabupaten_kota = models.CharField(max_length=50, default='')
+    kecamatan = models.CharField(max_length=50, default='')
+    status = models.CharField(
         max_length=4,
-        choices=JenisSekolah.choices,
+        choices=StatusSekolah.choices,
+        default=''
     )
+    no_tlp = models.CharField(max_length=20, blank=True, null=True, default='')
+    fax = models.CharField(max_length=20, default='')
 
     #default
-    #created_by
+    created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="sekolah_created_by", default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

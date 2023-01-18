@@ -54,4 +54,23 @@ Buka browser, http://localhost:8000/admin
 
 
 
+from django.utils.translation import gettext_lazy as _
+class dataSiswa(models.Model):
+    nama = models.CharField(max_length=50)
+    class JenisKelamin(models.TextChoices):
+        laki_laki = 'LK', _('Laki-Laki')
+        perempuan = 'PR', _('Perempuan')
+
+        jenis_kelamin = models.CharField(
+            max_length=2,
+            choices=JenisKelamin.choises,
+            
+        )
+
+    asal_sekolah = models.CharField(max_length=50)
+    no_tlp = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
+    alamat = models.TextField(default='Jawa Barat, Indonesia')
+
+
 

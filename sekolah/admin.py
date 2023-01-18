@@ -3,6 +3,6 @@ from .models import sekolah
 
 # Register your models here.
 class namaSekolah(admin.ModelAdmin):
-    list_display = ['nama', 'email', 'web', 'no_tlp', 'alamat', 'jenis_sekolah', 'created_at', 'updated_at' ]
+    list_display = ['npsn', 'nama',  'email', 'alamat', 'provinsi', 'kabupaten_kota', 'kecamatan', 'status', 'no_tlp', 'fax', 'created_by', 'updated_at' ]
 
-admin.site.register(sekolah,namaSekolah)
+admin.site.register(sekolah, namaSekolah)
